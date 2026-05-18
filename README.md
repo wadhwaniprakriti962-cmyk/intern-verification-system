@@ -24,7 +24,7 @@ This project allows users to:
 - Express.js
 
 ### Database
-- MongoDB (if connected)
+- MongoDB
 
 ---
 
