@@ -9,6 +9,7 @@ export default function Verify() {
 
   const handleVerify = async (e) => {
     e.preventDefault();
+
     setLoading(true);
     setResult(null);
 
@@ -18,11 +19,15 @@ export default function Verify() {
       );
 
       console.log(res.data);
+
       setResult(res.data);
 
     } catch (err) {
       console.log(err);
-      setResult({ status: "Not Found ❌" });
+
+      setResult({
+        status: "Not Found ❌"
+      });
     }
 
     setLoading(false);
@@ -30,34 +35,76 @@ export default function Verify() {
 
   return (
     <div className="verify-page">
-      <h2>Verify Internship Code</h2>
 
-      <form onSubmit={handleVerify} className="verify-form">
-        <input
-          type="text"
-          placeholder="Enter verification code"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        />
+      <div className="verify-container">
 
-        <button type="submit">
-          {loading ? "Verifying..." : "Verify"}
-        </button>
-      </form>
+        <div className="verify-header">
+          <h2>Verify Internship Certificate</h2>
 
-      {result && (
-  <div className="result-card">
-    {result.intern ? (
-      <>
-        <h3>Verified ✅</h3>
+          <p>
+            Enter the internship verification code to check
+            authenticity and intern details.
+          </p>
+        </div>
 
-        <p><strong>Name:</strong> {result.intern.name}</p>
-        <p><strong>Designation:</strong> {result.intern.designation}</p>
-        <p><strong>Duration:</strong> {result.intern.duration}</p>
-      </>
-    ) : (
-      <h3>Not Found ❌</h3>
-    )}
-  </div>
-)}
-</div>)}
+        <form onSubmit={handleVerify} className="verify-form">
+
+          <input
+            type="text"
+            placeholder="Enter verification code"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+          />
+
+          <button type="submit">
+            {loading ? "Verifying..." : "Verify Code"}
+          </button>
+
+        </form>
+
+        {result && (
+          <div className="result-card">
+
+            {result.intern ? (
+              <>
+                <div className="verified-icon">✅</div>
+
+                <h3>Verification Successful</h3>
+
+                <div className="info-box">
+                  <p>
+                    <span>Name</span>
+                    {result.intern.name}
+                  </p>
+
+                  <p>
+                    <span>Designation</span>
+                    {result.intern.designation}
+                  </p>
+
+                  <p>
+                    <span>Duration</span>
+                    {result.intern.duration}
+                  </p>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="error-icon">❌</div>
+
+                <h3>Code Not Found</h3>
+
+                <p className="error-text">
+                  Please check the verification code and try again.
+                </p>
+              </>
+            )}
+
+          </div>
+        )}
+
+      </div>
+
+    </div>
+  );
+}

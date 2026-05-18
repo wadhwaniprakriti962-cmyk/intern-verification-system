@@ -3,15 +3,20 @@ import { NavLink } from "react-router-dom";
 export default function Navbar() {
   return (
     <nav style={styles.nav}>
-      
-      {/* Left Title */}
-      <div style={styles.logo}>
-        Intern Verification System
+
+      {/* Logo Section */}
+      <div style={styles.logoContainer}>
+        <div style={styles.logoCircle}>IV</div>
+
+        <div>
+          <h2 style={styles.logo}>Intern Verification</h2>
+          <p style={styles.subText}>Certificate Management System</p>
+        </div>
       </div>
 
-      {/* Right Tabs */}
+      {/* Navigation Links */}
       <div style={styles.links}>
-        
+
         <NavLink
           to="/generate"
           style={({ isActive }) =>
@@ -43,44 +48,75 @@ export default function Navbar() {
     </nav>
   );
 }
+
 const styles = {
   nav: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: "12px 20px",
-    backgroundColor: "#fff",
-    boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+    padding: "14px 32px",
+    background: "linear-gradient(to right, #0f172a, #1e293b)",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
     position: "sticky",
-    top: 0
+    top: 0,
+    zIndex: 1000
+  },
+
+  logoContainer: {
+    display: "flex",
+    alignItems: "center",
+    gap: "12px"
+  },
+
+  logoCircle: {
+    width: "45px",
+    height: "45px",
+    borderRadius: "50%",
+    backgroundColor: "#2563eb",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "white",
+    fontWeight: "bold",
+    fontSize: "18px"
   },
 
   logo: {
-    fontWeight: "bold",
-    fontSize: "18px",
-    color: "#333"
+    margin: 0,
+    color: "white",
+    fontSize: "20px",
+    fontWeight: "700"
+  },
+
+  subText: {
+    margin: 0,
+    fontSize: "12px",
+    color: "#cbd5e1"
   },
 
   links: {
     display: "flex",
-    gap: "10px"
+    gap: "14px"
   },
 
   btn: {
-    padding: "8px 14px",
-    borderRadius: "8px",
+    padding: "10px 18px",
+    borderRadius: "10px",
     textDecoration: "none",
-    color: "#333",
-    backgroundColor: "#f3f4f6",
-    fontWeight: "500"
+    color: "#e2e8f0",
+    backgroundColor: "transparent",
+    border: "1px solid transparent",
+    fontWeight: "500",
+    transition: "0.3s ease"
   },
 
   activeBtn: {
-    padding: "8px 14px",
-    borderRadius: "8px",
+    padding: "10px 18px",
+    borderRadius: "10px",
     textDecoration: "none",
     color: "white",
     backgroundColor: "#2563eb",
-    fontWeight: "500"
+    fontWeight: "600",
+    boxShadow: "0 4px 10px rgba(37,99,235,0.4)"
   }
 };
